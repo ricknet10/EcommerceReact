@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import {useEffect,useState} from "react";
+//import './App.css';
+import { Product } from './product';
+//import { Product } from './Product';
+//import { Product } from './Product';
+
 
 function App() {
-  const [products,setProducts]=useState<Product[]>([
-  // {name:'product1', price: 100.00},
-   //{name:'product2', price: 100.00},
+  const [products,setProduct]=useState<Product[]>([
   ]);
  useEffect(() =>{
-  fetch('http://localhost:5000/api/products')
+  fetch('http://localhost:5003/api/product')
+ // fetch('https://localhost:44442/backend/products')
   .then(response => response.json())
-  .then(data=>setProducts(data))
+  .then(data=>setProduct(data))
+  .catch(error => console.log(error)); // Trate o erro de forma apropriada
+
  },[])
   
- function addProduct(){
-  setProducts(prevState => [...prevState,
+ function addProduct(): void{
+  setProduct(prevState => [...prevState,
   {
-    id: prevState.lenght + 101,
-    name: 'product' + (prevState.lenght +1),
-    price:(prevState.lenght * 100) + 100,
+    id: prevState.length + 101,
+    name: 'product' + (prevState.length +1),
+    price:(prevState.length * 100) + 100,
     brand:'som brand',
     description:'some description',
-    pictureUrl: 'htt://picsum.photos/200'
-    //name: 'product'+ (prevState.length = 1),price:(prevState.length = 100)+100}])
+    pictureUrl: 'htt://picsum.photos/200'    
   }])
  }
 
@@ -35,6 +38,7 @@ function App() {
         <li key={product.id}>{product.name} - {product.price}</li>
       ))}
      </ul>
+     <button onClick={addProduct}>Add Product</button>
     </div>
   );
 }
