@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
-//import './App.css';
+import './App.css';
 import { Product } from './product';
-//import { Product } from './Product';
-//import { Product } from './Product';
 
 
 function App() {
