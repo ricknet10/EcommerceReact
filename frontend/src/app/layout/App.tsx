@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Product } from './product';
+import './styles.css';
+import { Product } from '../models/product';
 
 
 function App() {
   const [products,setProduct]=useState<Product[]>([
   ]);
  useEffect(() =>{
-  fetch('http://localhost:5003/api/product')
+  fetch('https://localhost:5003/api/product')
  // fetch('https://localhost:44442/backend/products')
   .then(response => response.json())
   .then(data=>setProduct(data))
