@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { Product } from '../models/product';
+import Catalog from '../../features/catalog/catalog';
 
 
 function App() {
@@ -8,14 +9,13 @@ function App() {
   ]);
  useEffect(() =>{
   fetch('https://localhost:5003/api/product')
- // fetch('https://localhost:44442/backend/products')
   .then(response => response.json())
   .then(data=>setProduct(data))
   .catch(error => console.log(error)); // Trate o erro de forma apropriada
 
  },[])
   
- function addProduct(): void{
+ function addProduct(){
   setProduct(prevState => [...prevState,
   {
     id: prevState.length + 101,
@@ -30,12 +30,8 @@ function App() {
   return (
     <div>
      <h1>React Ecommerce</h1>
-     <ul>
-      {products.map(product => (
-        <li key={product.id}>{product.name} - {product.price}</li>
-      ))}
-     </ul>
-     <button onClick={addProduct}>Add Product</button>
+     <Catalog products= {products} addProduct={addProduct} />
+
     </div>
   );
 }
