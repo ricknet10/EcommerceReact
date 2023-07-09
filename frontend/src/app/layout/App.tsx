@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { Product } from '../models/product';
 import Catalog from '../../features/catalog/catalog';
+import { Container, CssBaseline } from '@mui/material';
+import Header from './Header';
 
 
 function App() {
@@ -23,16 +25,20 @@ function App() {
     price:(prevState.length * 100) + 100,
     brand:'som brand',
     description:'some description',
-    pictureUrl: 'htt://picsum.photos/200'    
-  }])
+    pictureUrl:"https://fastly.picsum.photos/id/50/200/200.jpg?hmac=Tz-5Oumk5gfW4P4hAiYNsHDjmBVhOzedd8gy4aEsumY" //'htts://picsum.photos/200'    
+  }
+])
  }
 
   return (
-    <div>
-     <h1>React Ecommerce</h1>
+    <>
+    <CssBaseline/>
+     <Header/>
+     <Container>
      <Catalog products= {products} addProduct={addProduct} />
-
-    </div>
+     </Container>
+</>
+    
   );
 }
 
