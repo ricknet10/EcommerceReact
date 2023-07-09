@@ -1,43 +1,34 @@
-import React, { useEffect, useState } from 'react';
 import './styles.css';
-import { Product } from '../models/product';
 import Catalog from '../../features/catalog/catalog';
-import { Container, CssBaseline } from '@mui/material';
+import { Container,createTheme, CssBaseline,ThemeProvider } from '@mui/material';
 import Header from './Header';
+import {useState}from "react";
 
 
 function App() {
-  const [products,setProduct]=useState<Product[]>([
-  ]);
- useEffect(() =>{
-  fetch('https://localhost:5003/api/product')
-  .then(response => response.json())
-  .then(data=>setProduct(data))
-  .catch(error => console.log(error)); // Trate o erro de forma apropriada
-
- },[])
-  
- function addProduct(){
-  setProduct(prevState => [...prevState,
-  {
-    id: prevState.length + 101,
-    name: 'product' + (prevState.length +1),
-    price:(prevState.length * 100) + 100,
-    brand:'som brand',
-    description:'some description',
-    pictureUrl:"https://fastly.picsum.photos/id/50/200/200.jpg?hmac=Tz-5Oumk5gfW4P4hAiYNsHDjmBVhOzedd8gy4aEsumY" //'htts://picsum.photos/200'    
+  const [darkMode,setDarkMode] = useState(false);
+  const paletteType = darkMode ? 'dark':'light';
+ const theme = createTheme({
+  palete: {
+    mode:paletteType,
+    background:{
+      default: paletteType==='light' ? '#eaeaea':'#121212'
+    }
   }
-])
+ })
+
+ function handleThemeChange(){
+  setDarkMode(!darkMode);
  }
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
     <CssBaseline/>
-     <Header/>
+     <Header darkMode={darkMode} handleThemeChange={handleThemeChange}/>
      <Container>
-     <Catalog products= {products} addProduct={addProduct} />
+     <Catalog />
      </Container>
-</>
+</ThemeProvider>
     
   );
 }
