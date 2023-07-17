@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+
+    public class ProductController : BaseApiController
     {
          private readonly StoreContext _context;
         public ProductController(StoreContext context)
