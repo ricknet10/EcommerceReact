@@ -18,8 +18,8 @@ const requests = {
 }
 
 const Catalog = {
-    list:()=> requests.get('products'),
-    details:(id:number)=>requests.get(`products/${id}`)
+    list:()=> requests.get('product'),
+    details:(id:number)=>requests.get(`product/${id}`)
 }
 
 const TestErrors = {
