@@ -6,6 +6,7 @@ import AboutPage from "../../features/about/AboutPage";
 import ContactPage from "../../features/contact/ContactPage";
 import App from "../layout/App";
 import ServerError from "../errors/ServerError";
+import NotFound from "../errors/NotFound";
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -17,6 +18,11 @@ export const router = createBrowserRouter([
             {path:'about',element:<AboutPage/>},
             {path:'contact',element:<ContactPage/>},
             {path:'server-error',element: <ServerError/>},
+            {path:'not-found',element: <NotFound/>},
+            {path:'server-error',element: <ServerError/>},
+            {path:'*',element: <Navigate  replace to='/not-found' />}
+
+
 
 
 

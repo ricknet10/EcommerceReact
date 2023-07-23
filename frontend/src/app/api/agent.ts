@@ -5,14 +5,17 @@ import { url } from "inspector";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 
-axios.defaults.baseURL = 'https://localhost:5003/api/'
+const speep = () => new Promise(resolve=> setTimeout(resolve,500));
+
+axios.defaults.baseURL = 'https://localhost:5003/api/';
 const responseBody = (response: AxiosResponse) => response.data;
 
 //function responseBodyFn(response:AxiosResponse){
   //  return response.data;
 //}
 
-axios.interceptors.response.use(response => {
+axios.interceptors.response.use(async response => {
+    await sleep();
     return response
 },(error:AxiosError) =>{
     //console.log('caught by interceptor');
