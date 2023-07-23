@@ -3,6 +3,7 @@ import { error } from "console";
 import { request } from "https";
 import { url } from "inspector";
 import { toast } from "react-toastify";
+import { router } from "../router/Routes";
 
 axios.defaults.baseURL = 'https://localhost:5003/api/'
 const responseBody = (response: AxiosResponse) => response.data;
@@ -19,12 +20,22 @@ axios.interceptors.response.use(response => {
    // return Promise.reject(error.response);
    switch (status){
     case 400:
-        toast.error(data.title);
+       // toast.error(data.title);
+       if(data.errors){
+        const modelStateErrors:string[]=[];
+        for (const key in data.errors){
+            if(data.erros[key]){
+                modelStateErrors.push(data.errors[key])
+            }
+        }
+        throw modelStateErrors.flat();
+       }
         break;
         case 401:toast.error(data.title);
         break;
-        case 500:toast.error(data.title);
-        break;
+        case 500:
+          router.navigate('/server-error') ,{state:{error: data}};
+       break;
         default:break;
    }
    return Promise.reject(error.response);
