@@ -3,7 +3,7 @@ import { Product } from "../../app/models/product";
 import { Button } from "@mui/material";
 import ProductList from "./ProductList";
 import agent from "../../app/api/agent";
-//import LoadingComponent from "../../app/layout/LoadingComponent";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
