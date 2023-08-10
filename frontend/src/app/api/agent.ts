@@ -5,7 +5,7 @@ import { url } from "inspector";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 
-const speep = () => new Promise(resolve=> setTimeout(resolve,500));
+const sleep = () => new Promise(resolve=> setTimeout(resolve,500));
 
 axios.defaults.baseURL = 'https://localhost:5003/api/';
 const responseBody = (response: AxiosResponse) => response.data;

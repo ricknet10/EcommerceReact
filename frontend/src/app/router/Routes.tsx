@@ -1,4 +1,4 @@
-import { createBrowserRouter} from "react-router-dom";
+import { Navigate, createBrowserRouter} from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import Catalog from "../../features/catalog/catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
